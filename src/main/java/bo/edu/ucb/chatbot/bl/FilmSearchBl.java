@@ -24,4 +24,17 @@ public class FilmSearchBl {
         }
         return filmDao.findByTitle(title);
     }
+    public List<Film> findByActor(String actor) {
+        if (actor == null || actor.trim().equals("")) {
+            throw new SakilaException(403, "Bad request: The title parameter is mandatory and can't be null or empty");
+        }
+        return filmDao.findByActor(actor);
+    }
+
+    public List<Film> findByTitleAndAutor(String nombre, String titulo) {
+        if ((nombre == null || nombre.trim().equals(""))&&(titulo == null || titulo.trim().equals(""))) {
+            throw new SakilaException(403, "Bad request: The title parameter is mandatory and can't be null or empty");
+        }
+        return filmDao.findByTitleAndAutor(nombre,titulo);
+    }
 }

@@ -14,6 +14,8 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
+import org.junit.Rule;
+import org.junit.rules.ExpectedException;
 
 /*
  * Se procederá a probar el comportamiento del Bot, ahora mismo el Bot
@@ -32,12 +34,13 @@ public class BotFilmSearchBlUnitTest {
 
     @Mock
     FilmSearchBl filmSearchBl;
-
+    @Rule
+    public ExpectedException exception = ExpectedException.none();
     @Test
     public void filmNotFound() {
-        String message = "AAA";
+        String message = "Título=AAA";
         // Cuando se invoque al metodo findByTitle con el parametro message (AAA) se retornará siempre vacio.
-        when(filmSearchBl.findByTitle(message)).thenReturn(new ArrayList<>());
+        //when(filmSearchBl.findByTitle(message)).thenReturn(new ArrayList<>());
         BotFilmSearchBl botFilmSearchBl = new BotFilmSearchBl(filmSearchBl);
         List<String> botResponse = botFilmSearchBl.processMessage(message);
 
@@ -65,18 +68,23 @@ public class BotFilmSearchBlUnitTest {
         mockResulList.add(filmThree);
 
 
-        String message = "AAA";
+        String message = "Título=AAA";
         // Cuando se invoque al metodo findByTitle con el parametro message (AAA) se retornará 3 peliculas.
-        when(filmSearchBl.findByTitle(message)).thenReturn(mockResulList);
+        when(filmSearchBl.findByTitle("AAA")).thenReturn(mockResulList);
         BotFilmSearchBl botFilmSearchBl = new BotFilmSearchBl(filmSearchBl);
         List<String> botResponse = botFilmSearchBl.processMessage(message);
 
         assertEquals(botResponse.size(), 4, "Debería retornar unicamente un mensaje");
-        assertTrue(botResponse.get(0).equals("Encontré las siguientes películas:"), "El mensaje para pelicuals encontradsa es incorrecto");
+        assertTrue(botResponse.get(0).equals("Encontré las siguientes películas del:"), "El mensaje para pelicuals encontradsa es incorrecto");
         assertTrue(botResponse.get(1).contains("viento se llevo"), "La primera película es incorrecta: " + botResponse.get(1) + "||");
         assertTrue(botResponse.get(2).contains("Pinochio"), "La segunda película es incorrecta"+ botResponse.get(2) + "||");
         assertTrue(botResponse.get(3).contains("libro de la selva"), "La tercer película es incorrecta"+ botResponse.get(3) + "||");
 
     }
-
+    @Test
+    public void verificarNombreyTitulodeLaFuncion(){
+        BotFilmSearchBl botFilmSearchBl=new BotFilmSearchBl(filmSearchBl);
+        botFilmSearchBl.verificadorActor("Título=AAA/Nombre=Tom hanks");
+        botFilmSearchBl.verificadorTitulo("Nombre=Tom hanks/Título=AAA");
+    }
 }

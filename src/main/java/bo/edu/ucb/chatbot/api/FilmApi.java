@@ -31,4 +31,10 @@ public class FilmApi {
         System.out.println("Invocando al metodo GET!!!!!!!!!!!");
         return filmSearchBl.findByTitle(title);
     }
+
+    @GetMapping(value = "/actor/{first_name last_name}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Film> findBytActor(@PathVariable(name = "first_name last_name") String actor) {
+        System.out.println("Invocando al metodo GET!!!!!!!!!!!");
+        return filmSearchBl.findByActor(actor);
+    }
 }

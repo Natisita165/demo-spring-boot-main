@@ -8,10 +8,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.ArrayList;
-
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
 
 /**
  * Testcase 1: Busqueda por titulo de forma exacta
@@ -76,6 +73,22 @@ class FindByTitleUnitTests {
 		});
 		assertEquals(ex3.getCode(), 403); // 1000 significa blanco o nulo
 
+
+
+		SakilaException exa1 = assertThrows(SakilaException.class, () -> {
+			filmSearchBl.findByActor(null);
+		});
+		assertEquals(exa1.getCode(), 403); // 1000 significa blanco o nulo
+
+		SakilaException exa2 = assertThrows(SakilaException.class, () -> {
+			filmSearchBl.findByActor("");
+		});
+		assertEquals(exa2.getCode(), 403); // 1000 significa blanco o nulo
+
+		SakilaException exa3 = assertThrows(SakilaException.class, () -> {
+			filmSearchBl.findByActor("            ");
+		});
+		assertEquals(exa3.getCode(), 403); // 1000 significa blanco o nulo
 	}
 
 }
