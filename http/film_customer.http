@@ -8,5 +8,5 @@ Content-Type: application/json
   "last_name": "Hammil",
   "email": "mhmm@gmail.com",
   "address_id": 2,
-  "active": true
+  "active": 1
 }

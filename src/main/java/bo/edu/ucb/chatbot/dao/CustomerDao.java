@@ -20,25 +20,27 @@ public class CustomerDao {
     }
 
     public Customer postCustomer(Customer customer) {
-        List<Film> result = new ArrayList<>();
+
+        System.out.println("ENTRE GG 1");
         String query = "INSERT INTO customer VALUES ("+
                 "null,?,?,?,?,?,?,NOW(),NOW())";
 
+        System.out.println("ENTRE GG 2");
         try (
                 Connection conn = dataSource.getConnection();
                 PreparedStatement pstmt =  conn.prepareStatement(query);
         ) {
-            System.out.println(query);
+            System.out.println("ENTRE GG"+query);
             pstmt.setInt(1, customer.getStore_id());
             pstmt.setString(2,customer.getFirst_name());
             pstmt.setString(3,customer.getLast_name());
             pstmt.setString(4, customer.getEmail());
             pstmt.setInt(5,customer.getAddress_id());
-            pstmt.setBoolean(6,customer.getActive());
+            pstmt.setInt(6,customer.getActive());
 
 
-            ResultSet rs = pstmt.executeQuery();
-            rs.close();
+            pstmt.executeUpdate();
+
         } catch (SQLException ex) {
             ex.printStackTrace();
             // TODO gestionar correctamente la excepción

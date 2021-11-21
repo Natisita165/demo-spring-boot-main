@@ -9,7 +9,7 @@ public class Customer {
     private String last_name;
     private String email;
     private Integer address_id;
-    private Boolean active;
+    private Integer active;
     private Date crate_date;
     private Date last_update;
 
@@ -65,11 +65,11 @@ public class Customer {
         this.address_id = address_id;
     }
 
-    public Boolean getActive() {
+    public Integer getActive() {
         return active;
     }
 
-    public void setActive(Boolean active) {
+    public void setActive(Integer active) {
         this.active = active;
     }
 
