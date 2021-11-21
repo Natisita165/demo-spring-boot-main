@@ -1,0 +1,12 @@
+POST http://localhost:8080/v1/api/customer/post
+Accept: application/json
+Content-Type: application/json
+
+{
+  "store_id": 2,
+  "first_name": "Mark",
+  "last_name": "Hammil",
+  "email": "mhmm@gmail.com",
+  "address_id": 2,
+  "active": true
+}
