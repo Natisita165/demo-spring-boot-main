@@ -21,4 +21,8 @@ public class CustomerBl {
 
         return customerDao.postCustomer(customer);
     }
+
+    public Customer putCustomer(Customer customer) {
+        return customerDao.putCustomer(customer);
+    }
 }

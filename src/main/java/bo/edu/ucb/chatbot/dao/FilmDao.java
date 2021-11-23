@@ -29,7 +29,10 @@ public class FilmDao {
                 "   f.release_year, " +
                 "   l.name as language , " +
                 "   ol.name as original_language, " +
+                "   f.rental_duration,"+
+                "   f.rental_rate,"+
                 "   f.length, " +
+                "   f.replacement_cost,"+
                 "   f.rating, " +
                 "   f.special_features, " +
                 "   f.last_update " +
@@ -54,7 +57,10 @@ public class FilmDao {
                 film.setReleaseYear(rs.getShort("release_year"));
                 film.setLanguage("language");
                 film.setOriginalLanguage("original_language");
+                film.setRental_duration(rs.getInt("rental_duration"));
+                film.setRental_rate(rs.getInt("rental_rate"));
                 film.setLength(rs.getInt("length"));
+                film.setReplacement_cost(rs.getInt("replacement_cost"));
                 film.setRating(rs.getString("rating"));
                 film.setSpecialFeatures(rs.getString("special_features"));
                 java.sql.Date lastUpdate = rs.getDate("last_update");
@@ -86,7 +92,10 @@ public class FilmDao {
                 "   f.release_year, " +
                 "   l.name as language , " +
                 "   ol.name as original_language, " +
+                "   f.rental_duration,"+
+                "   f.rental_rate,"+
                 "   f.length, " +
+                "   f.replacement_cost,"+
                 "   f.rating, " +
                 "   f.special_features, " +
                 "   f.last_update " +
@@ -118,7 +127,10 @@ public class FilmDao {
                 film.setReleaseYear(rs.getShort("release_year"));
                 film.setLanguage("language");
                 film.setOriginalLanguage("original_language");
+                film.setRental_duration(rs.getInt("rental_duration"));
+                film.setRental_rate(rs.getInt("rental_rate"));
                 film.setLength(rs.getInt("length"));
+                film.setReplacement_cost(rs.getInt("replacement_cost"));
                 film.setRating(rs.getString("rating"));
                 film.setSpecialFeatures(rs.getString("special_features"));
                 java.sql.Date lastUpdate = rs.getDate("last_update");
@@ -146,7 +158,10 @@ public class FilmDao {
                 "   f.release_year, " +
                 "   l.name as language , " +
                 "   ol.name as original_language, " +
+                "   f.rental_duration,"+
+                "   f.rental_rate,"+
                 "   f.length, " +
+                "   f.replacement_cost,"+
                 "   f.rating, " +
                 "   f.special_features, " +
                 "   f.last_update " +
@@ -180,7 +195,10 @@ public class FilmDao {
                 film.setReleaseYear(rs.getShort("release_year"));
                 film.setLanguage("language");
                 film.setOriginalLanguage("original_language");
+                film.setRental_duration(rs.getInt("rental_duration"));
+                film.setRental_rate(rs.getInt("rental_rate"));
                 film.setLength(rs.getInt("length"));
+                film.setReplacement_cost(rs.getInt("replacement_cost"));
                 film.setRating(rs.getString("rating"));
                 film.setSpecialFeatures(rs.getString("special_features"));
                 java.sql.Date lastUpdate = rs.getDate("last_update");

@@ -18,6 +18,12 @@ public class Film {
     private List<String> actors;
     private String category;
     private Date lastUpdate;
+    private Integer rental_duration;
+    private Integer rental_rate;
+    private String languageid;
+    private String originalLanguageid;
+    private Integer replacement_cost;
+
 
     public Film() {
     }
@@ -42,6 +48,50 @@ public class Film {
                 ", description='" + description + '\'' +
                 ", lengthLabel='" + lengthLabel + '\'' +
                 '}';
+    }
+
+    public void setLengthLabel(String lengthLabel) {
+        this.lengthLabel = lengthLabel;
+    }
+
+    public Integer getRental_duration() {
+        return rental_duration;
+    }
+
+    public void setRental_duration(Integer rental_duration) {
+        this.rental_duration = rental_duration;
+    }
+
+    public Integer getRental_rate() {
+        return rental_rate;
+    }
+
+    public void setRental_rate(Integer rental_rate) {
+        this.rental_rate = rental_rate;
+    }
+
+    public String getLanguageid() {
+        return languageid;
+    }
+
+    public void setLanguageid(String languageid) {
+        this.languageid = languageid;
+    }
+
+    public String getOriginalLanguageid() {
+        return originalLanguageid;
+    }
+
+    public void setOriginalLanguageid(String originalLanguageid) {
+        this.originalLanguageid = originalLanguageid;
+    }
+
+    public Integer getReplacement_cost() {
+        return replacement_cost;
+    }
+
+    public void setReplacement_cost(Integer replacement_cost) {
+        this.replacement_cost = replacement_cost;
     }
 
     public Integer getFilmId() {

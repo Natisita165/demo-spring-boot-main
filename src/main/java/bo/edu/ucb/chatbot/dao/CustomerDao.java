@@ -47,4 +47,32 @@ public class CustomerDao {
         }
         return customer;
     }
+//no finalizado la actualización de address
+    public Customer putCustomer(Customer customer) {
+        System.out.println("ENTRE GG 1");
+        String query = "UPDATE address SET address = ?,address2=?, district=?, city_id=?," +
+                "postal_code=?, phone=?, last_update=NOW()";
+
+        System.out.println("ENTRE GG 2");
+        try (
+                Connection conn = dataSource.getConnection();
+                PreparedStatement pstmt =  conn.prepareStatement(query);
+        ) {
+            System.out.println("ENTRE GG"+query);
+            pstmt.setInt(1, customer.getStore_id());
+            pstmt.setString(2,customer.getFirst_name());
+            pstmt.setString(3,customer.getLast_name());
+            pstmt.setString(4, customer.getEmail());
+            pstmt.setInt(5,customer.getAddress_id());
+            pstmt.setInt(6,customer.getActive());
+
+
+            pstmt.executeUpdate();
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            // TODO gestionar correctamente la excepción
+        }
+        return customer;
+    }
 }

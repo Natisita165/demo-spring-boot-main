@@ -22,5 +22,10 @@ public class CustumerApi {
         Customer customerAdd = customerBl.postCustomer(customer);
         return customerAdd;
     }
+    @RequestMapping(path = "/put",method = RequestMethod.PUT)
+    public Customer putCustomer(@RequestBody Customer customer){
+        Customer customerAct = customerBl.putCustomer(customer);
+        return customerAct;
+    }
 
 }
