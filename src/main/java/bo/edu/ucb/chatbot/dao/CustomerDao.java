@@ -5,6 +5,8 @@ import bo.edu.ucb.chatbot.dto.Customer;
 import bo.edu.ucb.chatbot.dto.Film;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -75,4 +77,34 @@ public class CustomerDao {
         }
         return customer;
     }
-}
+
+        public String getEmailCustomer(String nombre, String appel) {
+            String email="";
+            String query = "SELECT email " +
+                    " FROM customer " +
+                    " WHERE " +
+                    "   (UPPER(first_name) LIKE ( ? ) or"+
+                    "   UPPER(last_name) LIKE ( ? ) )" ;
+
+            try (
+                    Connection conn = dataSource.getConnection();
+                    PreparedStatement pstmt =  conn.prepareStatement(query);
+            ) {
+                System.out.println(query);
+                //pstmt.setString(0, "%"+nombre[0].toUpperCase()+ "%");
+                pstmt.setString(1, "%"+nombre+ "%");
+                pstmt.setString(2, "%"+appel+ "%");
+                ResultSet rs = pstmt.executeQuery();
+                rs.next();
+                email= rs.getString("email");
+
+
+                rs.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                // TODO gestionar correctamente la excepción
+            }
+            return email;
+        }
+    }
+

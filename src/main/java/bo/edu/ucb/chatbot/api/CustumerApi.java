@@ -6,6 +6,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/v1/api/customer")
 public class CustumerApi {
@@ -25,6 +27,11 @@ public class CustumerApi {
     @RequestMapping(path = "/put",method = RequestMethod.PUT)
     public Customer putCustomer(@RequestBody Customer customer){
         Customer customerAct = customerBl.putCustomer(customer);
+        return customerAct;
+    }
+    @RequestMapping(path = "/getEmail",method = RequestMethod.GET)
+    public String getEmailCustomer(@RequestParam String nombre, @RequestParam String appel){
+        String customerAct = customerBl.getEmailCustomer(nombre, appel);
         return customerAct;
     }
 

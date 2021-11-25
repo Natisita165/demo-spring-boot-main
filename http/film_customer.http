@@ -20,8 +20,14 @@ Content-Type: application/json
  "address": "1913 Hanoi Way",
  "address2": "",
  "district": "Alberta",
- "city_id": 361,
- "postal_code": "42399",
- "phone": "10655648674"
+  "postal_code": "42399",
+  "phone": "10655648674",
+  "location": ""
 }
 
+###
+GET http://localhost:8080/v1/api/customer/getEmail?nombre=MARY&appel=SMITH
+Accept: application/json
+Content-Type: application/json
+
+###

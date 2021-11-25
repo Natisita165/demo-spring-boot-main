@@ -3,8 +3,13 @@ package bo.edu.ucb.chatbot.bl;
 
 import bo.edu.ucb.chatbot.dao.CustomerDao;
 import bo.edu.ucb.chatbot.dto.Customer;
+import bo.edu.ucb.chatbot.dto.Film;
+import bo.edu.ucb.chatbot.exception.SakilaException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 @Component
 public class CustomerBl {
@@ -25,4 +30,10 @@ public class CustomerBl {
     public Customer putCustomer(Customer customer) {
         return customerDao.putCustomer(customer);
     }
-}
+
+        public String getEmailCustomer(String nombre, String appel) {
+
+            return customerDao.getEmailCustomer(nombre, appel);
+    }
+    }
+
