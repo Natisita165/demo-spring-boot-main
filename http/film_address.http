@@ -1,0 +1,14 @@
+###
+
+PUT http://localhost:8080/v1/api/address
+Accept: application/json
+Content-Type: application/json
+
+{
+  "address": "1913 Hanoi Way",
+  "address2": "",
+  "district": "Alberta",
+  "city_id": 2,
+  "postal_code": "42399",
+  "phone": "10655648674"
+}

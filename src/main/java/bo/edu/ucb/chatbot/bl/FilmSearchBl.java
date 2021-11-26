@@ -5,6 +5,7 @@ import bo.edu.ucb.chatbot.dto.Film;
 import bo.edu.ucb.chatbot.exception.SakilaException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -36,5 +37,15 @@ public class FilmSearchBl {
             throw new SakilaException(403, "Bad request: The title parameter is mandatory and can't be null or empty");
         }
         return filmDao.findByTitleAndAutor(nombre,titulo);
+    }
+    public List<Film> getFilms(String title, String actor) {
+        if ((actor == null || actor.trim().equals(""))&&(title == null || title.trim().equals(""))) {
+            throw new SakilaException(403, "Bad request: The title parameter is mandatory and can't be null or empty");
+        }
+        return filmDao.findByTitleAndAutor(actor,title);
+    }
+    public List<Film> getFilmsAll(Integer page, Integer size) {
+
+        return filmDao.findByFilmsAll(page,size);
     }
 }

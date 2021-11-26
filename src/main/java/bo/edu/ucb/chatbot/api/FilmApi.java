@@ -4,9 +4,7 @@ import bo.edu.ucb.chatbot.bl.FilmSearchBl;
 import bo.edu.ucb.chatbot.dto.Film;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -16,7 +14,9 @@ import java.util.List;
  *
  * Por ejemplo para la busqueda por titulo el API rest no debería pasarle un titulo nulo.
  */
-@RestController()
+
+@RestController
+@RequestMapping("/v1/api/film")
 public class FilmApi {
 
     FilmSearchBl filmSearchBl;
@@ -26,15 +26,25 @@ public class FilmApi {
         this.filmSearchBl = filmSearchBl;
     }
 
-    @GetMapping(value = "/film/{title}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/{title}", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Film> findBytTitle(@PathVariable(name = "title") String title) {
         System.out.println("Invocando al metodo GET!!!!!!!!!!!");
         return filmSearchBl.findByTitle(title);
     }
 
-    @GetMapping(value = "/actor/{first_name last_name}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/{first_name last_name}", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Film> findBytActor(@PathVariable(name = "first_name last_name") String actor) {
         System.out.println("Invocando al metodo GET!!!!!!!!!!!");
         return filmSearchBl.findByActor(actor);
+    }
+    @RequestMapping(path = "/getFilm",method = RequestMethod.GET)
+    public List<Film> getFilms(@RequestParam String title, @RequestParam String actor){
+        List<Film> films = filmSearchBl.getFilms(title, actor);
+        return films;
+    }
+    @RequestMapping(path = "/getFilmAll",method = RequestMethod.GET)
+    public List<Film> getFilmsAll(@RequestParam Integer page, @RequestParam Integer size){
+        List<Film> films = filmSearchBl.getFilmsAll(page, size);
+        return films;
     }
 }
