@@ -47,9 +47,9 @@ public class AddressDao {
         }
         return address;
     }
-    public int putAddress(Integer address) {
-        int addr = -1;
-        Integer id = get(Address.getCity());
+    public Address putAddress(Address address) {
+        //int addr = -1;
+        //Integer id = get(Address.getCity());
 
         String query2 = "UPDATE address " +
                 "   SET address = ? , " +
@@ -65,17 +65,17 @@ public class AddressDao {
         ){
             pstmt.setString(1, address.getAddress());
             pstmt.setString(2, address.getAddress2());
-            pstmt.setString(3, address.getDistrict());
-            pstmt.setInt(4, cId);
-            pstmt.setInt(5, address.getPostal_code());
-            pstmt.setLong(6, address.getPhone());
+            pstmt.setString(3, address.getDisctrict());
+            pstmt.setInt(4, address.getCity_id());
+            pstmt.setString(5, address.getPostal_code());
+            pstmt.setString(6, address.getPhone());
             pstmt.setInt(7, address.getAddress_id());
-            addr = pstmt.executeUpdate();
-            System.out.println("repuesta: "+addr);
+
+            pstmt.executeUpdate();
 
         }catch(SQLException ex){
             ex.printStackTrace();
         }
-        return addr;
+        return address;
     }
 }

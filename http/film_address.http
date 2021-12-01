@@ -14,11 +14,12 @@ Content-Type: application/json
 }
 
 ###
-PUT http://localhost:8080/v1/api/address/postAd?adress=607
+PUT http://localhost:8080/v1/api/address/put
 Accept: application/json
 Content-Type: application/json
 
 {
+  "address_id": 607,
   "address": "1913 Hanoi Way Corected",
   "address2": "",
   "disctrict": "Alberta",

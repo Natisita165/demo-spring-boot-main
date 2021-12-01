@@ -19,7 +19,7 @@ public class AddressBl {
         return addressDao.postAddress(address);
     }
 
-    public Integer putAddress(Integer address) {
+    public Address putAddress(Address address) {
 
         return addressDao.putAddress(address);
     }
