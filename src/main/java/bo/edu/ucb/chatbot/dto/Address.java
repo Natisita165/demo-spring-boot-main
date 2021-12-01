@@ -11,6 +11,15 @@ public class Address {
     private String postal_code;
     private String phone;
     private Date last_update;
+    private String city;
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
 
     public Address(){
 

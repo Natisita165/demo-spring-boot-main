@@ -2,6 +2,7 @@ package bo.edu.ucb.chatbot.bl;
 
 
 import bo.edu.ucb.chatbot.dao.CustomerDao;
+import bo.edu.ucb.chatbot.dto.Address;
 import bo.edu.ucb.chatbot.dto.Customer;
 import bo.edu.ucb.chatbot.dto.Film;
 import bo.edu.ucb.chatbot.exception.SakilaException;
@@ -31,6 +32,10 @@ public class CustomerBl {
         public String getEmailCustomer(String nombre, String appel) {
 
             return customerDao.getEmailCustomer(nombre, appel);
+    }
+    public Address getAddressCustomer(Integer customer) {
+
+        return customerDao.getAddressCustomer(customer);
     }
     }
 

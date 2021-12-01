@@ -1,6 +1,7 @@
 package bo.edu.ucb.chatbot.dao;
 
 
+import bo.edu.ucb.chatbot.dto.Address;
 import bo.edu.ucb.chatbot.dto.Customer;
 import bo.edu.ucb.chatbot.dto.Film;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,7 +50,7 @@ public class CustomerDao {
         }
         return customer;
     }
-//no finalizado la actualización de address
+
 
 
         public String getEmailCustomer(String nombre, String appel) {
@@ -80,5 +81,51 @@ public class CustomerDao {
             }
             return email;
         }
+
+    public Address getAddressCustomer(Integer customer) {
+        Address adres=null;
+        String query = "SELECT a.address_id, " +
+                "   a.address, " +
+                "   a.address2, " +
+                "   a.district, " +
+                "   a.city_id, " +
+                "   c.city as city, " +
+                "   a.postal_code, " +
+                "   a.phone, " +
+                "   a.last_update"+
+                "   FROM address a " +
+                "   inner join customer cu on (cu.address_id = a.address_id) " +
+                "   inner join city c on (a.city_id = c.city_id) " +
+                "   WHERE cu.customer_id LIKE ( ? ) ";
+
+        try (
+                Connection conn = dataSource.getConnection();
+                PreparedStatement pstmt =  conn.prepareStatement(query);
+        ) {
+            System.out.println(query);
+            //pstmt.setString(0, "%"+nombre[0].toUpperCase()+ "%");
+            pstmt.setInt(1, customer);
+            ResultSet rs =  pstmt.executeQuery();
+            while(rs.next()){
+                Address address = new Address();
+                address.setAddress_id(rs.getInt("address_id"));
+                address.setAddress(rs.getString("address"));
+                address.setAddress2(rs.getString("address2"));
+                address.setDisctrict(rs.getString("district"));
+                address.setCity_id(rs.getInt("city_id"));
+                address.setCity(rs.getString("city"));
+                address.setPostal_code(rs.getString("postal_code"));
+                address.setPhone(rs.getString("phone"));
+                address.setLast_update(rs.getDate("last_update"));
+                adres = address;
+            }
+
+            rs.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            // TODO gestionar correctamente la excepción
+        }
+        return adres;
     }
+}
 

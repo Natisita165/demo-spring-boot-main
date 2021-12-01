@@ -1,12 +1,11 @@
 package bo.edu.ucb.chatbot.api;
 import bo.edu.ucb.chatbot.bl.CustomerBl;
+import bo.edu.ucb.chatbot.dto.Address;
 import bo.edu.ucb.chatbot.dto.Customer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/v1/api/customer")
@@ -24,14 +23,14 @@ public class CustumerApi {
         Customer customerAdd = customerBl.postCustomer(customer);
         return customerAdd;
     }
-    @RequestMapping(path = "/put",method = RequestMethod.PUT)
-    public Customer putCustomer(@RequestBody Customer customer){
-        Customer customerAct = customerBl.putCustomer(customer);
-        return customerAct;
-    }
     @RequestMapping(path = "/getEmail",method = RequestMethod.GET)
     public String getEmailCustomer(@RequestParam String nombre, @RequestParam String appel){
         String customerAct = customerBl.getEmailCustomer(nombre, appel);
+        return customerAct;
+    }
+    @RequestMapping(path = "/getAddress",method = RequestMethod.GET)
+    public Address getAddressCustomer(@RequestParam Integer customer){
+        Address customerAct = customerBl.getAddressCustomer(customer);
         return customerAct;
     }
 

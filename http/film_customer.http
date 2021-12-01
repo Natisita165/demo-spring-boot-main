@@ -19,7 +19,7 @@ Content-Type: application/json
 
 ###
 
-GET http://localhost:8080/v1/api/customer/getEmail?nombre=MARY&appel=SMITH
+GET http://localhost:8080/v1/api/customer/getAddress?customer=4
 Accept: application/json
 Content-Type: application/json
 

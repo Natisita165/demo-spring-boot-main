@@ -1,13 +1,27 @@
 ###
 
-PUT http://localhost:8080/v1/api/address
+POST http://localhost:8080/v1/api/address/put
 Accept: application/json
 Content-Type: application/json
 
 {
-  "address": "1913 Hanoi Way",
+  "address": "1913 Hanoi Way New2",
   "address2": "",
-  "district": "Alberta",
+  "disctrict": "Alberta",
+  "city_id": 2,
+  "postal_code": "42399",
+  "phone": "10655648674"
+}
+
+###
+PUT http://localhost:8080/v1/api/address/postAd?adress=607
+Accept: application/json
+Content-Type: application/json
+
+{
+  "address": "1913 Hanoi Way Corected",
+  "address2": "",
+  "disctrict": "Alberta",
   "city_id": 2,
   "postal_code": "42399",
   "phone": "10655648674"

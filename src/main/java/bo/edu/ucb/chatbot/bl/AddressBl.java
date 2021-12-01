@@ -14,9 +14,14 @@ public class AddressBl {
     public AddressBl(AddressDao addressDao) {
         this.addressDao = addressDao;
     }
+    public Address postAddress(Address address) {
 
-    public Address putAddress(Address address) {
+        return addressDao.postAddress(address);
+    }
+
+    public Integer putAddress(Integer address) {
 
         return addressDao.putAddress(address);
     }
+
 }
