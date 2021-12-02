@@ -44,8 +44,8 @@ public class FilmSearchBl {
         }
         return filmDao.findByTitleAndAutor(actor,title);
     }
-    public List<Film> getFilmsAll(Integer page, Integer size) {
+    public List<Film> getFilmsAll(Integer page, Integer size, String country) {
 
-        return filmDao.findByFilmsAll(page,size);
+        return filmDao.findByFilmsAll(page,size,country);
     }
 }

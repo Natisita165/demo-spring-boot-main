@@ -2,6 +2,7 @@ package bo.edu.ucb.chatbot.api;
 import bo.edu.ucb.chatbot.bl.CustomerBl;
 import bo.edu.ucb.chatbot.dto.Address;
 import bo.edu.ucb.chatbot.dto.Customer;
+import bo.edu.ucb.chatbot.dto.RentPayInv;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,12 @@ public class CustumerApi {
     public Address getAddressCustomer(@RequestParam Integer customer){
         Address customerAct = customerBl.getAddressCustomer(customer);
         return customerAct;
+    }
+
+    @RequestMapping(path = "/postNewRent",method = RequestMethod.POST)
+    public RentPayInv postNewRent(@RequestBody RentPayInv rentPayInv){
+        RentPayInv customerAddRent = customerBl.postNewRent(rentPayInv);
+        return customerAddRent;
     }
 
 }

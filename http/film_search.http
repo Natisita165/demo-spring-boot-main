@@ -13,8 +13,9 @@ Accept: application/json
 Content-Type: application/json
 
 ###
-GET http://localhost:8080/v1/api/film/getFilmAll?page=1&size=5
+GET http://localhost:8080/v1/api/film/getFilmAll?page=0&size=10&country=Canada
 Accept: application/json
 Content-Type: application/json
+
 
 ###

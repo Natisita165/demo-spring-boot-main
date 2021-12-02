@@ -1,50 +1,17 @@
 package bo.edu.ucb.chatbot.dto;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Date;
 
-public class RentPayInv {
-    //Inventary
-    private Integer inventory_id;
-    private Integer film_id;
-    private Integer store_id;
-
-    //Payment
+public class Payment {
     private Integer payment_id;
     private Integer customer_id;
     private Integer staff_id;
     private Integer rental_id;
     private Double amount;
     private Date payment_date;
+    private Date last_update;
 
-    //Rental
-    private Date rental_date;
-    private LocalDateTime return_date;
-
-
-    public Integer getInventory_id() {
-        return inventory_id;
-    }
-
-    public void setInventory_id(Integer inventory_id) {
-        this.inventory_id = inventory_id;
-    }
-
-    public Integer getFilm_id() {
-        return film_id;
-    }
-
-    public void setFilm_id(Integer film_id) {
-        this.film_id = film_id;
-    }
-
-    public Integer getStore_id() {
-        return store_id;
-    }
-
-    public void setStore_id(Integer store_id) {
-        this.store_id = store_id;
+    public Payment() {
     }
 
     public Integer getPayment_id() {
@@ -95,19 +62,11 @@ public class RentPayInv {
         this.payment_date = payment_date;
     }
 
-    public Date getRental_date() {
-        return rental_date;
+    public Date getLast_update() {
+        return last_update;
     }
 
-    public void setRental_date(Date rental_date) {
-        this.rental_date = rental_date;
-    }
-
-    public LocalDateTime getReturn_date() {
-        return return_date;
-    }
-
-    public void setReturn_date(LocalDateTime return_date) {
-        this.return_date = return_date;
+    public void setLast_update(Date last_update) {
+        this.last_update = last_update;
     }
 }

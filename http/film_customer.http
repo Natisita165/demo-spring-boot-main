@@ -24,3 +24,20 @@ Accept: application/json
 Content-Type: application/json
 
 ###
+
+POST http://localhost:8080/v1/api/customer/postNewRent
+Accept: application/json
+Content-Type: application/json
+
+{
+  "film_id": 1,
+  "store_id": 1,
+  "payment_id": 2,
+  "customer_id": 2,
+  "staff_id": 1,
+  "rental_id": 1,
+  "amount": 10,
+  "return_date": "2021-12-27T12:26:30.107"
+}
+
+###

@@ -212,7 +212,7 @@ public class FilmDao {
         }
         return result;
     }
-    public List<Film> findByFilmsAll(Integer page, Integer size) {
+    public List<Film> findByFilmsAll(Integer page, Integer size, String country) {
         List<Film> result = new ArrayList<>();
         String query = "SELECT f.film_id, " +
                 "   a.actor_id,"+
@@ -232,12 +232,21 @@ public class FilmDao {
                 "   f.rating, " +
                 "   f.special_features, " +
                 "   f.last_update " +
-                " FROM film f " +
+                " FROM inventory i,store st, address ad, city ci, country co, film f " +
                 "     LEFT JOIN language l ON ( f.language_id = l.language_id) " +
                 "     LEFT JOIN language ol ON ( f.original_language_id = ol.language_id) " +
                 "     LEFT JOIN film_actor af ON ( af.film_id = f.film_id) " +
                 "     LEFT JOIN actor a ON ( a.actor_id = af.actor_id) " +
-                "WHERE f.language_id=l.language_id AND af.film_id=f.film_id AND a.actor_id=af.actor_id "+
+                "WHERE f.language_id=l.language_id " +
+                "                 AND af.film_id=f.film_id " +
+                "                 AND a.actor_id=af.actor_id " +
+                "                 AND co.country_id=ci.country_id " +
+                "                 AND ci.city_id=ad.city_id " +
+                "                 AND ad.address_id = st.address_id " +
+                "                 AND i.store_id = st.store_id " +
+                "                 AND f.film_id = i.film_id " +
+                "                 AND co.country = ? " +
+                "                 GROUP BY f.film_id"+
                 " LIMIT ? OFFSET ?";
 
         try (
@@ -246,8 +255,9 @@ public class FilmDao {
         ) {
             System.out.println(query);
             //pstmt.setString(0, "%"+nombre[0].toUpperCase()+ "%");
-            pstmt.setInt(1, size);
-            pstmt.setInt(2, page);
+            pstmt.setString(1,country);
+            pstmt.setInt(2, size);
+            pstmt.setInt(3, page);
             ResultSet rs = pstmt.executeQuery();
             while(rs.next()) {
                 Film film = new Film();

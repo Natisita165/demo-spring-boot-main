@@ -43,8 +43,8 @@ public class FilmApi {
         return films;
     }
     @RequestMapping(path = "/getFilmAll",method = RequestMethod.GET)
-    public List<Film> getFilmsAll(@RequestParam Integer page, @RequestParam Integer size){
-        List<Film> films = filmSearchBl.getFilmsAll(page, size);
+    public List<Film> getFilmsAll(@RequestParam Integer page, @RequestParam Integer size, @RequestParam String country){
+        List<Film> films = filmSearchBl.getFilmsAll(page, size, country);
         return films;
     }
 }
