@@ -48,4 +48,8 @@ public class FilmSearchBl {
 
         return filmDao.findByFilmsAll(country);
     }
+
+    public List<Film> getFilmsMostRented(String country,boolean lastWeek) {
+        return filmDao.findByFilmsMostRented(country,lastWeek);
+    }
 }

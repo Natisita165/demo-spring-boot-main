@@ -47,4 +47,10 @@ public class FilmApi {
         List<Film> films = filmSearchBl.getFilmsAll(country);
         return films;
     }
+
+    @RequestMapping(path = "/getFilmMostRented",method = RequestMethod.GET)
+    public List<Film> getFilmsMostRented(@RequestParam String country,@RequestParam(value = "last_week",required = false) boolean lastWeek){
+        List<Film> films = filmSearchBl.getFilmsMostRented(country,lastWeek);
+        return films;
+    }
 }

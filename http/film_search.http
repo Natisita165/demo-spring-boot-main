@@ -13,9 +13,13 @@ Accept: application/json
 Content-Type: application/json
 
 ###
-GET http://localhost:8080/v1/api/film/getFilmAll?country=Canada
+GET http://localhost:8080/v1/api/film/getFilmAll?country=Australia
 Accept: application/json
 Content-Type: application/json
 
 
 ###
+
+GET http://localhost:8080/v1/api/film/getFilmMostRented?country=Australia
+Accept: application/json
+Content-Type: application/json
