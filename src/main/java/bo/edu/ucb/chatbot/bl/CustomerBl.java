@@ -69,5 +69,13 @@ public class CustomerBl {
         return rentPayInv;
 
     }
+
+    public Rental postRental(Rental rental) {
+        Integer idFilm=rental.getRental_id();
+        rental.setInventory_id(inventoryDao.getInventoryIdFilm(idFilm));
+        rentalDao.postRental(rental);
+        rental.setRental_id(transaccionDao.getLastInsertId());
+        return rental;
+    }
 }
 

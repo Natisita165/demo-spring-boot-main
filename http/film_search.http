@@ -1,19 +1,19 @@
-GET http://localhost:8080/v1/api/film/maude
+GET http://localhost:8080/v1/api/film/title/maude
 Accept: application/json
 
 ###
 
-GET http://localhost:8080/v1/api/film/ed chase
+GET http://localhost:8080/v1/api/film/actor/ed chase
 Accept: application/json
 
 ###
 
-GET http://localhost:8080/v1/api/film/getFilm?title=ACADEMY DINOSAUR&actor=PENELOPE GUINESS
+GET http://localhost:8080/v1/api/film/getFilm?title=Maude&actor=""
 Accept: application/json
 Content-Type: application/json
 
 ###
-GET http://localhost:8080/v1/api/film/getFilmAll?page=0&size=10&country=Canada
+GET http://localhost:8080/v1/api/film/getFilmAll?country=Canada
 Accept: application/json
 Content-Type: application/json
 

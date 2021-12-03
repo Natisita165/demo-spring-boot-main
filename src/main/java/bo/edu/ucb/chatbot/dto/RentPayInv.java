@@ -1,8 +1,8 @@
 package bo.edu.ucb.chatbot.dto;
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 public class RentPayInv {
     //Inventary
@@ -20,7 +20,7 @@ public class RentPayInv {
 
     //Rental
     private Date rental_date;
-    private LocalDateTime return_date;
+    private Date return_date;
 
 
     public Integer getInventory_id() {
@@ -103,11 +103,11 @@ public class RentPayInv {
         this.rental_date = rental_date;
     }
 
-    public LocalDateTime getReturn_date() {
+    public Date getReturn_date() {
         return return_date;
     }
 
-    public void setReturn_date(LocalDateTime return_date) {
+    public void setReturn_date(Date return_date) {
         this.return_date = return_date;
     }
 }

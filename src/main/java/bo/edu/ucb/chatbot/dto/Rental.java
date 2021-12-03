@@ -1,15 +1,16 @@
 package bo.edu.ucb.chatbot.dto;
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
+
 
 public class Rental {
     private Integer rental_id;
     private Date rental_date;
     private Integer inventory_id;
     private Integer customer_id;
-    private LocalDateTime return_date;
+    private Date return_date;
     private Integer staff_id;
     private Date last_update;
 
@@ -48,11 +49,11 @@ public class Rental {
         this.customer_id = customer_id;
     }
 
-    public LocalDateTime getReturn_date() {
+    public Date getReturn_date() {
         return return_date;
     }
 
-    public void setReturn_date(LocalDateTime return_date) {
+    public void setReturn_date(Date return_date) {
         this.return_date = return_date;
     }
 

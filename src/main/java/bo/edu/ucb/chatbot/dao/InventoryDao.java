@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 @Component
@@ -42,5 +43,29 @@ public class InventoryDao {
             }
             //return inventory;
 
+    }
+
+    public Integer getInventoryIdFilm(Integer idFilm) {
+        Integer insert=-1;
+        String query = "SELECT a.inventory_id FROM inventory a, film f WHERE a.film_id = f.film_id AND f.film_id = ?";
+
+        try (
+                Connection conn = dataSource.getConnection();
+                PreparedStatement pstmt =  conn.prepareStatement(query);
+        ) {
+            pstmt.setInt(1,idFilm);
+            ResultSet rs = pstmt.executeQuery();
+            rs.next();
+
+            insert= rs.getInt("inventory_id");
+
+
+
+            rs.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            // TODO gestionar correctamente la excepción
+        }
+        return insert;
     }
 }

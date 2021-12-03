@@ -20,19 +20,19 @@ public class RentalDao {
     }
 
 
-    public void postRental(Rental rental) {
+    public Rental postRental(Rental rental) {
         String query = "INSERT INTO rental VALUES ("+
-                "null,NOW(),?,?,?,?,NOW())";
+                "null,?,?,?,?,?,NOW())";
 
         try (
                 Connection conn = dataSource.getConnection();
                 PreparedStatement pstmt =  conn.prepareStatement(query);
         ) {
-            System.out.println("ENTRE GG"+query);
-            pstmt.setInt(1, rental.getInventory_id());
-            pstmt.setInt(2,rental.getCustomer_id());
-            pstmt.setObject(3, rental.getReturn_date());
-            pstmt.setInt(4,rental.getStaff_id());
+            pstmt.setDate(1, rental.getRental_date());
+            pstmt.setInt(2, rental.getInventory_id());
+            pstmt.setInt(3,rental.getCustomer_id());
+            pstmt.setDate(4, rental.getReturn_date());
+            pstmt.setInt(5,rental.getStaff_id());
 
 
             pstmt.executeUpdate();
@@ -41,6 +41,6 @@ public class RentalDao {
             ex.printStackTrace();
             // TODO gestionar correctamente la excepción
         }
-        //return inventory;
+        return rental;
     }
 }

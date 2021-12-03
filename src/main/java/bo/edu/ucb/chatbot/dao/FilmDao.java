@@ -212,7 +212,7 @@ public class FilmDao {
         }
         return result;
     }
-    public List<Film> findByFilmsAll(Integer page, Integer size, String country) {
+    public List<Film> findByFilmsAll(String country) {
         List<Film> result = new ArrayList<>();
         String query = "SELECT f.film_id, " +
                 "   a.actor_id,"+
@@ -231,13 +231,14 @@ public class FilmDao {
                 "   f.replacement_cost,"+
                 "   f.rating, " +
                 "   f.special_features, " +
-                "   f.last_update " +
-                " FROM inventory i,store st, address ad, city ci, country co, film f " +
+                "   f.last_update, " +
+                "   cat.name"+
+                " FROM film_category fca, category cat, inventory i,store st, address ad, city ci, country co, film f " +
                 "     LEFT JOIN language l ON ( f.language_id = l.language_id) " +
                 "     LEFT JOIN language ol ON ( f.original_language_id = ol.language_id) " +
                 "     LEFT JOIN film_actor af ON ( af.film_id = f.film_id) " +
                 "     LEFT JOIN actor a ON ( a.actor_id = af.actor_id) " +
-                "WHERE f.language_id=l.language_id " +
+                "WHERE fca.category_id=cat.category_id AND f.film_id=fca.film_id AND f.language_id=l.language_id " +
                 "                 AND af.film_id=f.film_id " +
                 "                 AND a.actor_id=af.actor_id " +
                 "                 AND co.country_id=ci.country_id " +
@@ -246,8 +247,7 @@ public class FilmDao {
                 "                 AND i.store_id = st.store_id " +
                 "                 AND f.film_id = i.film_id " +
                 "                 AND co.country = ? " +
-                "                 GROUP BY f.film_id"+
-                " LIMIT ? OFFSET ?";
+                "                 GROUP BY f.film_id";
 
         try (
                 Connection conn = dataSource2.getConnection();
@@ -256,8 +256,6 @@ public class FilmDao {
             System.out.println(query);
             //pstmt.setString(0, "%"+nombre[0].toUpperCase()+ "%");
             pstmt.setString(1,country);
-            pstmt.setInt(2, size);
-            pstmt.setInt(3, page);
             ResultSet rs = pstmt.executeQuery();
             while(rs.next()) {
                 Film film = new Film();
@@ -275,6 +273,7 @@ public class FilmDao {
                 film.setSpecialFeatures(rs.getString("special_features"));
                 java.sql.Date lastUpdate = rs.getDate("last_update");
                 film.setLastUpdate(new java.util.Date(lastUpdate.getTime()));
+                film.setCategory(rs.getString("name"));
                 result.add(film);
             }
             rs.close();

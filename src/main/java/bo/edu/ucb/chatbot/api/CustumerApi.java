@@ -3,6 +3,7 @@ import bo.edu.ucb.chatbot.bl.CustomerBl;
 import bo.edu.ucb.chatbot.dto.Address;
 import bo.edu.ucb.chatbot.dto.Customer;
 import bo.edu.ucb.chatbot.dto.RentPayInv;
+import bo.edu.ucb.chatbot.dto.Rental;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,11 @@ public class CustumerApi {
     public RentPayInv postNewRent(@RequestBody RentPayInv rentPayInv){
         RentPayInv customerAddRent = customerBl.postNewRent(rentPayInv);
         return customerAddRent;
+    }
+    @RequestMapping(path = "/postRental",method = RequestMethod.POST)
+    public Rental postRental(@RequestBody Rental rental){
+        Rental customerPostRent = customerBl.postRental(rental);
+        return customerPostRent;
     }
 
 }

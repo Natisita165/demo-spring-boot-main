@@ -26,13 +26,13 @@ public class FilmApi {
         this.filmSearchBl = filmSearchBl;
     }
 
-    @GetMapping(value = "/{title}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/title/{title}", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Film> findBytTitle(@PathVariable(name = "title") String title) {
         System.out.println("Invocando al metodo GET!!!!!!!!!!!");
         return filmSearchBl.findByTitle(title);
     }
 
-    @GetMapping(value = "/{first_name last_name}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/actor/{first_name last_name}", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Film> findBytActor(@PathVariable(name = "first_name last_name") String actor) {
         System.out.println("Invocando al metodo GET!!!!!!!!!!!");
         return filmSearchBl.findByActor(actor);
@@ -43,8 +43,8 @@ public class FilmApi {
         return films;
     }
     @RequestMapping(path = "/getFilmAll",method = RequestMethod.GET)
-    public List<Film> getFilmsAll(@RequestParam Integer page, @RequestParam Integer size, @RequestParam String country){
-        List<Film> films = filmSearchBl.getFilmsAll(page, size, country);
+    public List<Film> getFilmsAll(@RequestParam String country){
+        List<Film> films = filmSearchBl.getFilmsAll(country);
         return films;
     }
 }

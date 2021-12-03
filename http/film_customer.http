@@ -41,3 +41,17 @@ Content-Type: application/json
 }
 
 ###
+
+POST http://localhost:8080/v1/api/customer/postRental
+Accept: application/json
+Content-Type: application/json
+
+{
+  "rental_id": 125,
+  "rental_date": "2021-12-05",
+  "customer_id": 2,
+  "return_date": "2021-12-25",
+  "staff_id": 1
+}
+
+###
