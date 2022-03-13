@@ -36,7 +36,7 @@ public class ChatbotApplication {
 	}
  */
 
-
+//main del programa :D
 	public static void main(String[] args) throws  Exception{
 		ApplicationContext ctx = SpringApplication.run(ChatbotApplication.class, args);
 		// Obtengo la clase con Spring porque use @Component @Autowired
